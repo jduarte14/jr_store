@@ -4,13 +4,14 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createProduct = async (req, res) => {
     const params = req.body;
-    const { nombre, descripcion, descripcionCorta, categoria  } = params;
+    const { nombre, descripcion, descripcionCorta, categoria,caracteristicas  } = params;
 
     try {
         let validate_nombre = !validator.isEmpty(nombre);
         let validate_description = !validator.isEmpty(descripcion);
         let validate_descripcionCorta = !validator.isEmpty(descripcionCorta);
         let validate_categoria = !validator.isEmpty(categoria);
+        let validate_categoriaPadre = !validator.isEmpty(categoriaPadre);
 
         if (!validate_nombre || !validate_description || !validate_descripcionCorta || !validate_categoria ) {
             return res.status(400).json({
@@ -36,6 +37,7 @@ const createProduct = async (req, res) => {
             nombre: nombre,
             descripcion: descripcion,
             descripcionCorta: descripcionCorta,
+            categoriaPadre: categoriaPadre,
             categoria: categoria,
             caracteristicas: caracteristicas,
             imagen: imageUrls[0],
@@ -108,7 +110,7 @@ const getProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
     try {
-      const { nombre, descripcion, descripcionCorta, categoria, caracteristicas } = req.body;
+      const { nombre, descripcion, descripcionCorta, categoria, categoriaPadre , caracteristicas } = req.body;
       const id = req.params.id;
       const { imagen, imagen2, imagen3, imagen4, imagen5 } = req.files;
   
@@ -140,6 +142,7 @@ const editProduct = async (req, res) => {
         nombre: nombre,
         descripcion: descripcion,
         descripcionCorta: descripcionCorta,
+        categoriaPadre: categoriaPadre,
         categoria: categoria,
         caracteristicas: caracteristicas,
         imagen: imageUrls[0],
