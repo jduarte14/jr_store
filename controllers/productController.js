@@ -4,7 +4,7 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createProduct = async (req, res) => {
     const params = req.body;
-    const { nombre, descripcion, descripcionCorta, categoria,caracteristicas  } = params;
+    const { nombre, descripcion, descripcionCorta, categoria,caracteristicas,categoriaPadre  } = params;
 
     try {
         let validate_nombre = !validator.isEmpty(nombre);
@@ -13,7 +13,7 @@ const createProduct = async (req, res) => {
         let validate_categoria = !validator.isEmpty(categoria);
         let validate_categoriaPadre = !validator.isEmpty(categoriaPadre);
 
-        if (!validate_nombre || !validate_description || !validate_descripcionCorta || !validate_categoria ) {
+        if (!validate_nombre || !validate_description || !validate_descripcionCorta || !validate_categoria || !validate_categoriaPadre ) {
             return res.status(400).json({
                 status: "error",
                 message: "Missing required fields",
