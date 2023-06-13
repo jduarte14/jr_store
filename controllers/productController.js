@@ -126,14 +126,7 @@ const editProduct = async (req, res) => {
         const image = await cloudinary.uploader.upload(imagen3[0].path);
         imageUrls.push(image.secure_url);
       }
-      if (imagen4) {
-        const image = await cloudinary.uploader.upload(imagen4[0].path);
-        imageUrls.push(image.secure_url);
-      }
-      if (imagen5) {
-        const image = await cloudinary.uploader.upload(imagen5[0].path);
-        imageUrls.push(image.secure_url);
-      }
+
 
   
       const productData = {
