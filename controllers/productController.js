@@ -63,7 +63,7 @@ const getProducts = async (req, res) => {
         const products = await Product.find();
         if (!products) {
             return res.status(400).json({
-                status: "err or",
+                status: "error",
                 message: "No products found in the database",
             })
         }
