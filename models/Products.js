@@ -33,12 +33,6 @@ const ProductSchema = Schema({
     },
     imagen3: {
         type: String,
-    },
-    imagen4: {
-        type: String,
-    },
-    imagen5: {
-        type: String
     }
 });
 

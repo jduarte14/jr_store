@@ -42,9 +42,7 @@ const createProduct = async (req, res) => {
             caracteristicas: caracteristicas,
             imagen: imageUrls[0],
             imagen2: imageUrls[1],
-            imagen3: imageUrls[2],
-            imagen4: imageUrls[3],
-            imagen5: imageUrls[4]
+            imagen3: imageUrls[2]
         });
 
         await product.save();
@@ -112,7 +110,7 @@ const editProduct = async (req, res) => {
     try {
       const { nombre, descripcion, descripcionCorta, categoria, categoriaPadre , caracteristicas } = req.body;
       const id = req.params.id;
-      const { imagen, imagen2, imagen3, imagen4, imagen5 } = req.files;
+      const { imagen, imagen2, imagen3} = req.files;
   
       const imageUrls = [];
   
@@ -148,8 +146,6 @@ const editProduct = async (req, res) => {
         imagen: imageUrls[0],
         imagen2: imageUrls[1],
         imagen3: imageUrls[2],
-        imagen4: imageUrls[3],
-        imagen5: imageUrls[4],
       };
   
       const product = await Product.findByIdAndUpdate(id, productData, { new: true });
