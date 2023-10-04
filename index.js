@@ -6,20 +6,6 @@ connection();
 
 const app = express();
 const port = 4800;
-
-const whitelist = ['https://dehierroymadera.com.uy/'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
-
-
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
