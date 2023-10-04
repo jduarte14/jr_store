@@ -18,7 +18,9 @@ const corsOptions = {
   }
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+    origin:"https://dehierroymadera.com.uy/"
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
