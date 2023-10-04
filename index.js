@@ -18,11 +18,14 @@ const corsOptions = {
   }
 };
 
-app.use(cors({
-    origin:"https://dehierroymadera.com.uy/"
-}));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors({
+    origin:whitelist
+ }));
 
 const product_routes = require("./routes/product_routes");
 const user_routes = require("./routes/user_routes");
