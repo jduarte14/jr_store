@@ -1,4 +1,4 @@
-const {connection} = require('./db/conexion');
+const { connection } = require('./db/conexion');
 const express = require("express");
 const cors = require("cors");
 
@@ -6,27 +6,28 @@ connection();
 
 const app = express();
 const port = 4800;
+
 const whitelist = ['https://dehierroymadera.com.uy/'];
 const corsOptions = {
-    origin: function (origin, callback) {
-      if (whitelist.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-  };
+  }
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-
-app.listen(port, () => {
-    console.log(`servidor funcionando en el puerto ${port}`);
-});
+app.use(express.urlencoded({ extended: true }));
 
 const product_routes = require("./routes/product_routes");
 const user_routes = require("./routes/user_routes");
 
-app.use("/api",product_routes);
-app.use("/auth",user_routes);
+app.use("/api", product_routes);
+app.use("/auth", user_routes);
+
+app.listen(port, () => {
+    console.log(`servidor funcionando en el puerto ${port}`);
+});
