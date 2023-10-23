@@ -3,7 +3,7 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createBanner = async (req, res) => {
     try {
-        const { name, type, title, description, link, desktop_image, mobile_image } = req.body;
+        const { name, type, title, subtitle, description, link, desktop_image, mobile_image } = req.body;
         const imageUrls = await Promise.all(
             Object.values(req.files).map(async (file) => {
                 const image = await cloudinary.uploader.upload(file[0].path);
@@ -16,6 +16,7 @@ const createBanner = async (req, res) => {
                 name: name,
                 type: type,
                 title: title,
+                subtitle:subtitle,
                 description: description,
                 link: link,
                 desktop_image: imageUrls[0],
@@ -127,7 +128,7 @@ const deleteBanner = async (req, res) => {
 
 const editBanner = async (req, res) => {
     try {
-        const { name, type, title, description, link, desktop_image, mobile_image } = req.body;
+        const { name, type, title, description, link, desktop_image, mobile_image, subtitle } = req.body;
         const id = req.params.id;
 
         const imageUrls = await Promise.all(
@@ -140,6 +141,7 @@ const editBanner = async (req, res) => {
             name: name,
             type: type,
             title: title,
+            subtitle:subtitle,
             description: description,
             link: link,
             desktop_image: imageUrls[0],
