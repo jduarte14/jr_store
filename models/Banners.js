@@ -23,6 +23,9 @@ const BannerSchema = Schema({
     link:{
         type:String,
     },
+    link_text:{
+        type:String,
+    },
     desktop_image:{
         type:String,
     },

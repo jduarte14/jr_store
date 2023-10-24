@@ -19,6 +19,7 @@ const createBanner = async (req, res) => {
                 subtitle:subtitle,
                 description: description,
                 link: link,
+                link_text:link_text,
                 desktop_image: imageUrls[0],
                 mobile_image: imageUrls[1]
             });
@@ -128,7 +129,7 @@ const deleteBanner = async (req, res) => {
 
 const editBanner = async (req, res) => {
     try {
-        const { name, type, title, description, link, desktop_image, mobile_image, subtitle } = req.body;
+        const { name, type, title, description, link, desktop_image, mobile_image, subtitle, link_text } = req.body;
         const id = req.params.id;
 
         const imageUrls = await Promise.all(
@@ -144,6 +145,7 @@ const editBanner = async (req, res) => {
             subtitle:subtitle,
             description: description,
             link: link,
+            link_text: link_text,
             desktop_image: imageUrls[0],
             mobile_image: imageUrls[1]
         };
