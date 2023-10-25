@@ -3,7 +3,7 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createBanner = async (req, res) => {
     try {
-        const { name, type, title, subtitle, description, link, desktop_image, mobile_image } = req.body;
+        const { name, type, title, subtitle, description, link, desktop_image, mobile_image, link_text } = req.body;
         const imageUrls = await Promise.all(
             Object.values(req.files).map(async (file) => {
                 const image = await cloudinary.uploader.upload(file[0].path);
