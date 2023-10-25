@@ -14,7 +14,7 @@ app.use(cors({
         const accepted_origins = [
             'https://dehierroymadera.com.uy',
             'http://192.168.1.4:3000',
-            'http://192.168.0.146/:3000'
+            'http://192.168.0.146:3000'
         ]
         if(accepted_origins.includes(origin) || !origin){
             callback(null,true)
