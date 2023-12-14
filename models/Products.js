@@ -1,39 +1,41 @@
 const { Schema, model } = require('mongoose');
 
 const ProductSchema = Schema({
-    nombre: {
+    name: {
         type: String,
         required: true
     },
-    descripcion: {
+    description: {
         type: String,
         required: true
     },
-    descripcionCorta: {
-        type: String,
-        required: true
-    },
-    categoriaPadre:{
+    category:{
         type:String,
         required:true
     },
-    categoria: {
+    subcategory: {
         type: String,
         required: true
     },
-    caracteristicas: {
+    characteristic: {
         type: String
     },
-    imagen: {
+    image: {
         type: String,
         required: true
     },
-    imagen2: {
+    image2: {
         type: String
     },
-    imagen3: {
+    image3: {
+        type: String,
+    },
+    image4: {
+        type: String,
+    },
+    image5: {
         type: String,
     }
 });
 
-module.exports = model('Product', ProductSchema, 'products');
+module.exports = model('JProduct', ProductSchema, 'JProducts');

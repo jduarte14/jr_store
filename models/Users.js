@@ -18,4 +18,4 @@ const UserSchema = Schema({
     }
 });
 
-module.exports = model("Users", UserSchema, "users_dym");
+module.exports = model("JUsers", UserSchema, "JUsers");

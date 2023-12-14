@@ -34,4 +34,4 @@ const BannerSchema = Schema({
     }
 });
 
-module.exports = model('banner', BannerSchema, 'banners');
+module.exports = model('JBanner', BannerSchema, 'JBanner');

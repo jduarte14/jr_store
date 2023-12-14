@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        if (file.fieldname !== 'imagen' && file.fieldname !== 'imagen2' && file.fieldname !== 'imagen3' && file.fieldname !== 'imagen4' && file.fieldname !== 'imagen5' && file.fieldname !== 'imagen6' && file.fieldname !== 'imagen7') {
+        if (file.fieldname !== 'image' && file.fieldname !== 'image2' && file.fieldname !== 'image3' && file.fieldname !== 'image4' && file.fieldname !== 'image5') {
             cb(null, false);
             return cb(new Error('Invalid field name'));
         }
@@ -31,7 +31,7 @@ const upload = multer({
 
 router.post('/products', upload, ProductController.createProduct);
 
-router.put('/products/:id', upload, ProductController.editProduct);
+router.patch('/products/:id', upload, ProductController.editProduct);
 router.get('/products', ProductController.getProducts);
 router.get('/products/:id', ProductController.getProduct);
 router.delete('/products/:id', ProductController.deleteProduct);

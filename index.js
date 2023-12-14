@@ -12,9 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin:(origin,callback)=>{
         const accepted_origins = [
-            'https://dehierroymadera.com.uy',
-            'http://192.168.1.4:3000',
-            'http://192.168.0.146:3000'
+            'http://localhost:5173/',
         ]
         if(accepted_origins.includes(origin) || !origin){
             callback(null,true)
