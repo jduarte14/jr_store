@@ -22,11 +22,11 @@ const upload = multer({
         cb(null, true);
     }
 }).fields([
-    { name: 'imagen', maxCount: 1 },
-    { name: 'imagen2', maxCount: 1 },
-    { name: 'imagen3', maxCount: 1 },
-    { name: 'imagen4', maxCount: 1 },
-    { name: 'imagen5', maxCount: 1 },
+    { name: 'image', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 },
+    { name: 'image4', maxCount: 1 },
+    { name: 'image5', maxCount: 1 },
 ]);
 
 router.post('/products', upload, ProductController.createProduct);
