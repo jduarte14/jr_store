@@ -9,19 +9,7 @@ const port = 4800;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-    origin:(origin,callback)=>{
-        const accepted_origins = [
-            'http://localhost:5173/',
-        ]
-        if(accepted_origins.includes(origin) || !origin){
-            callback(null,true)
-       }
-       else {
-        return callback(new Error("No allowed by CORS"));
-       }
-    }
-}))
+app.use(cors());
 
 const product_routes = require("./routes/product_routes");
 const user_routes = require("./routes/user_routes");
