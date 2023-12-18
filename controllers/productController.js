@@ -3,7 +3,7 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createProduct = async (req, res) => {
     const params = req.body;
-    const { name, description, category, subcategory, characteristic } = params;
+    const { name, description, category, subcategory, characteristic, price } = params;
 
     try {
 
@@ -34,6 +34,7 @@ const createProduct = async (req, res) => {
             category:category,
             subcategory:subcategory,
             characteristic:characteristic,
+            price: price,
             image: imageUrls[0],
             image2: imageUrls[1],
             image3: imageUrls[2],
@@ -105,7 +106,7 @@ const getProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
     try {
-        const { name, description, category, subcategory, characteristic } = params;
+        const { name, description, category, subcategory, characteristic, price } = params;
         const id = req.params.id;
         const { image, image2, image3 } = req.files;
 
@@ -132,6 +133,7 @@ const editProduct = async (req, res) => {
             category:category,
             subcategory:subcategory,
             characteristic:characteristic,
+            price:price,
             image: imageUrls[0],
             image2: imageUrls[1],
             image3: imageUrls[2],
