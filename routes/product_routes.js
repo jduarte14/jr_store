@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        if (file.fieldname !== 'image' && file.fieldname !== 'image2' && file.fieldname !== 'image3' && file.fieldname !== 'image4' && file.fieldname !== 'image5') {
+        if (file.fieldname !== 'image' && file.fieldname !== 'image2' && file.fieldname !== 'image3' && file.fieldname !== 'image4') {
             cb(null, false);
             return cb(new Error('Invalid field name'));
         }

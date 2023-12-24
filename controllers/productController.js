@@ -8,7 +8,7 @@ const createProduct = async (req, res) => {
     try {
 
 
-        if (!name || !description || !category ) {
+        if (!name || !description || !category) {
             return res.status(400).json({
                 status: "error",
                 message: "Missing required fields",
@@ -29,11 +29,11 @@ const createProduct = async (req, res) => {
         );
 
         const product = new Product({
-            name:name,
-            description:description,
-            category:category,
-            subcategory:subcategory,
-            characteristic:characteristic,
+            name: name,
+            description: description,
+            category: category,
+            subcategory: subcategory,
+            characteristic: characteristic,
             price: price,
             image: imageUrls[0],
             image2: imageUrls[1],
@@ -41,7 +41,6 @@ const createProduct = async (req, res) => {
             image4: imageUrls[3],
             image5: imageUrls[4]
         });
-
         await product.save();
 
         return res.status(200).json({
@@ -105,46 +104,48 @@ const getProduct = async (req, res) => {
 }
 
 const editProduct = async (req, res) => {
-    try {
+try {
+        const params = req.body;
         const { name, description, category, subcategory, characteristic, price } = params;
         const id = req.params.id;
-        const { image, image2, image3 } = req.files;
+        const { image, image2, image3, image4, image5 } = req.files;
 
         const imageUrls = [];
 
         if (image) {
-            const image = await cloudinary.uploader.upload(imagen[0].path);
-            imageUrls.push(image.secure_url);
+            const imageData = await cloudinary.uploader.upload(image[0].path);
+            imageUrls.push(imageData.secure_url);
         }
         if (image2) {
-            const image = await cloudinary.uploader.upload(imagen2[0].path);
-            imageUrls.push(image.secure_url);
+            const imageData = await cloudinary.uploader.upload(image2[0].path);
+            imageUrls.push(imageData.secure_url);
         }
         if (image3) {
-            const image = await cloudinary.uploader.upload(imagen3[0].path);
-            imageUrls.push(image.secure_url);
+            const imageData = await cloudinary.uploader.upload(image3[0].path);
+            imageUrls.push(imageData.secure_url);
+        }
+        if (image4) {
+            const imageData = await cloudinary.uploader.upload(image4[0].path);
+            imageUrls.push(imageData.secure_url);
+        }
+        if (image5) {
+            const imageData = await cloudinary.uploader.upload(image5[0].path);
+            imageUrls.push(imageData.secure_url);
         }
 
-
-
         const productData = {
-            name:name,
-            description:description,
-            category:category,
-            subcategory:subcategory,
-            characteristic:characteristic,
-            price:price,
+            name: name,
+            description: description,
+            category: category,
+            subcategory: subcategory,
+            characteristic: characteristic,
+            price: price,
             image: imageUrls[0],
             image2: imageUrls[1],
             image3: imageUrls[2],
             image4: imageUrls[3],
             image5: imageUrls[4]
         };
-
-
-
-
-
 
         const product = await Product.findByIdAndUpdate(id, productData, { new: true });
 
