@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        if (file.fieldname !== 'desktop_image' && file.fieldname !== "desktop_mobile") {
+        if (file.fieldname !== 'desktop_image' && file.fieldname !== 'mobile_image' ) {
             cb(null, false);
             return cb(new Error('Invalid field name'));
         }
@@ -23,7 +23,7 @@ const upload = multer({
     }
 }).fields([
     { name: 'desktop_image', maxCount: 1 },
-    { name: 'desktop_mobile', maxCount: 1 },
+    { name: 'mobile_image', maxCount: 1 },
 ]);
 
 router.post('/banners', upload, BannerController.createBanner);
