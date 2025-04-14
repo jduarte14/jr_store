@@ -26,10 +26,25 @@ const upload = multer({
 ]);
 
 
+const uploadImage = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (!file.fieldname.startsWith("image")) {
+            cb(null, false);
+            return cb(new Error('Invalid field name'));
+        }
+        cb(null, true);
+    }
+}).fields([
+    { name: 'image', maxCount: 1 },
+]);
+
+
 router.post('/articles', upload, ArticleController.createArticle);
 router.get('/articles', ArticleController.getArticles);
 router.get('/articles/:id', ArticleController.getArticle);
 router.delete('/articles/:id', ArticleController.deleteArticle);
 router.patch('/articles/:id',upload, ArticleController.editArticle);
+router.post('/articles/attachment/image/upload', uploadImage, ArticleController.uploadImage);
 
 module.exports = router;

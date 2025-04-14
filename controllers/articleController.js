@@ -156,10 +156,41 @@ const editArticle = async (req, res) => {
     }
 };
 
+const uploadImage = async (req, res) => {
+    try {
+        const url = req.files.image[0].path;
+        const image = await cloudinary.uploader.upload(url);
+
+        const width = image.width;
+        const height = image.height;
+        const aspectRatio = width / height;
+
+
+        const uploadedImage = {
+            url: image.secure_url,
+            width,
+            height,
+            aspectRatio
+        };
+
+        return res.status(200).json({
+            status: "success",
+            image: uploadedImage
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: error.message
+        });
+    }
+};
+
+
 module.exports = {
     createArticle,
     getArticles,
     getArticle,
     deleteArticle,
     editArticle,
+    uploadImage
 };
