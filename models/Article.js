@@ -22,6 +22,7 @@ const ArticleSchema = Schema({
     },
     banner: {
         type: String,
+        requided: true,
     }
 });
 

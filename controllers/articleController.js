@@ -3,21 +3,15 @@ const cloudinary = require('../cloudinary/cloudinary');
 
 const createArticle = async (req, res) => {
     try {
-        const { title, category, description, content } = req.body;
-        const imageUrls = await Promise.all(
-            Object.values(req.files).map(async (file) => {
-                const image = await cloudinary.uploader.upload(file[0].path);
-                return image.secure_url;
-            })
-        );
+        const { title, category, description, content, banner } = req.body;
 
-        if (title || category || description || content) {
+        if (title || category || description || content || banner)  {
             const newArticle = new Article({
                 title: title,
                 category: category,
                 description: description,
                 content: content,
-                banner: imageUrls[0]  // Assuming the first image URL is used as the banner
+                banner: banner,
             });
 
             await newArticle.save();
