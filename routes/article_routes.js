@@ -45,6 +45,7 @@ router.get('/articles', ArticleController.getArticles);
 router.get('/articles/:id', ArticleController.getArticle);
 router.delete('/articles/:id', ArticleController.deleteArticle);
 router.patch('/articles/:id',upload, ArticleController.editArticle);
+router.get('/articles/category/:category', ArticleController.getArticlesByCategory);
 router.post('/articles/attachment/image/upload', uploadImage, ArticleController.uploadImage);
 
 module.exports = router;

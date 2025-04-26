@@ -61,6 +61,33 @@ const getArticles = async (req, res) => {
     }
 };
 
+const getArticlesByCategory = async (req, res) => {
+    try {
+        const category = req.params.category;
+
+        const articles = await Article.find({ category });
+
+        if (!articles || articles.length === 0) {
+            return res.status(404).json({
+                status: "error",
+                message: `No articles found for category: ${category}`,
+            });
+        }
+
+        return res.status(200).json({
+            status: "success",
+            message: `Articles found for category: ${category}`,
+            articles: articles,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: error.message,
+        });
+    }
+};
+
+
 const getArticle = async (req, res) => {
     try {
         const id = req.params.id;
@@ -186,5 +213,6 @@ module.exports = {
     getArticle,
     deleteArticle,
     editArticle,
-    uploadImage
+    uploadImage,
+    getArticlesByCategory
 };
